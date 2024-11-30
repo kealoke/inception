@@ -24,6 +24,7 @@ RUN mkdir /run/mysql/
 RUN chown mysql:mysql /run/mysql/
 RUN chmod 755 /run/mysql/
 
+
 COPY script.sh .
 RUN chmod +x script.sh
 
