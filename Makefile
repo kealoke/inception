@@ -1,4 +1,4 @@
-COMPOSE_FILE=./src/compose.yml
+COMPOSE_FILE=./srcs/compose.yml
 
 
 build:
@@ -9,8 +9,8 @@ up:
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all -v
 rm:
-	sudo rm -rf ./src/database/*
-	sudo rm -rf ./src/web/*
+	sudo rm -rf ./srcs/database/*
+	sudo rm -rf ./srcs/web/*
 
 ps:
 	docker-compose -f $(COMPOSE_FILE) ps

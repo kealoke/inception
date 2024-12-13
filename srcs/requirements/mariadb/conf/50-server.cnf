@@ -5,7 +5,7 @@
 # this is read by the standalone daemon and embedded servers
 [server]
 # init_file = /etc/mysql/init.sql
-
+socket = /run/mysqld/mysqld.sock
 # this is only for the mysqld standalone daemon
 [mysqld]
 
@@ -60,7 +60,7 @@ bind-address            = 0.0.0.0
 #general_log_file       = /var/log/mysql/mysql.log
 #general_log            = 1
 log_error = /var/log/mysql/error.log
-log_warning = 2
+#log_warning = 2
 
 # When running under systemd, error logging goes via stdout/stderr to journald
 # and when running legacy init error logging goes to syslog due to

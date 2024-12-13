@@ -4,12 +4,13 @@ services:
 
   nginx:
     build: requirements/nginx/.
+    image: nginx
     container_name: nginx
     hostname: nginx_host
     depends_on:
       - wordpress
     ports:
-      - "80:80"
+      - "443:443"
     volumes:
         - ./web:/var/www/html/web
     networks:
@@ -19,6 +20,7 @@ services:
 
   wordpress:
     build: requirements/wordpress/.
+    image: wordpress
     container_name: wordpress
     hostname: wp_host
     depends_on:
@@ -29,9 +31,15 @@ services:
       - inception
     env_file:
       - .env
-  
+    secrets:
+      - db_password
+      - db_root_password
+      - wp_admin_password
+    
+
   mariadb:
     build: requirements/mariadb/.
+    image: mariadb
     container_name: mariadb
     hostname: mariadb
     volumes:
@@ -40,11 +48,17 @@ services:
       - inception
     env_file:
       - .env
+    secrets:
+      - db_password
+      - db_root_password
     
+
 
 networks:
   inception:
     name: inception
+
+
 
 volumes:
   web: 
@@ -61,3 +75,15 @@ volumes:
       type: none
       device: ./database
       o: bind
+ 
+
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  wp_admin_password:
+    file: ../secrets/wp_admin_password.txt
+
+  
