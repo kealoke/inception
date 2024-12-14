@@ -14,4 +14,4 @@ chown www-data:www-data /run/php
 COPY script.sh .
 RUN chmod +x script.sh
 
-CMD ["./script.sh"]
+ENTRYPOINT ["/bin/bash", "./script.sh"]
