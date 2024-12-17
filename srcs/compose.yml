@@ -15,6 +15,7 @@ services:
       - inception
     env_file:
       - .env
+    restart: always
 
   wordpress:
     build: requirements/wordpress/.
@@ -34,6 +35,7 @@ services:
       - db_root_password
       - wp_admin_password
       - wp_user_password
+    restart: always
     
 
   mariadb:
@@ -50,6 +52,7 @@ services:
     secrets:
       - db_password
       - db_root_password
+    restart: always
     
 
 
