@@ -27,6 +27,14 @@ if [ -f /run/secrets/wp_user_password ]; then
     export WP_USER_PWD=$(cat /run/secrets/wp_user_password)
 fi
 
+until mysqladmin ping -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" --silent; do
+    echo "Waiting for MariaDB server to be ready..."
+    sleep 5
+done
+
+echo "MariaDB server is up - executing WordPress setup..."
+
+
 wp core download --allow-root --path=/var/www/html/web
 
 wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST --allow-root

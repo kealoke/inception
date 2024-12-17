@@ -3,7 +3,7 @@ FROM debian:bullseye
 USER root
 
 RUN apt-get update && apt-get upgrade -y && \ 
-    apt-get install -y php7.4-fpm php7.4-mysqli curl 
+    apt-get install -y php7.4-fpm php7.4-mysqli curl iputils-ping default-mysql-client
 
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 

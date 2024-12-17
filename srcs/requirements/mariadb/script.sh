@@ -21,7 +21,7 @@ echo "FLUSH PRIVILEGES;" >> /var/lib/mysql/init.sql
 
 
 mysqld_safe --datadir=/var/lib/mysql  &
-sleep 10
+sleep 5
 
 mysql -uroot -p$DB_ROOT_PWD < /var/lib/mysql/init.sql
 
