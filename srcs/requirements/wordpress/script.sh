@@ -27,7 +27,7 @@ if [ -f /run/secrets/wp_user_password ]; then
     export WP_USER_PWD=$(cat /run/secrets/wp_user_password)
 fi
 
-until mysqladmin ping -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" --silent; do
+until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PWD" -e "USE $DB_NAME" &>/dev/null; do
     echo "Waiting for MariaDB server to be ready..."
     sleep 5
 done
