@@ -5,6 +5,9 @@ up:
 	docker-compose -f $(COMPOSE_FILE) build
 	docker-compose -f $(COMPOSE_FILE) up -d
 
+stop:
+	docker-compose -f $(COMPOSE_FILE) stop
+
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all -v
 rm:
