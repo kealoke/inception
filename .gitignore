@@ -1,4 +1,4 @@
 ./srcs/database/*
 ./srcs/web/*
 ./secrets/*
-.env
+./srcs/.env
