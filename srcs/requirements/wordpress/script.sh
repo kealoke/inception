@@ -1,10 +1,9 @@
 #!/bin/bash
 
-mkdir -p /var/www/
-mkdir -p /var/www/html/
-mkdir -p /var/www/html/web
+mkdir -p /var/www/html/web 
 chown -R www-data:www-data /var/www/html/web
-chmod -R 755 /var/www/html/web
+find /var/www/html/web -type d -exec chmod 755 {} \;
+find /var/www/html/web -type f -exec chmod 644 {} \;
 cd /var/www/html/web
 rm -rf *
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -27,13 +26,14 @@ if [ -f /run/secrets/wp_user_password ]; then
     export WP_USER_PWD=$(cat /run/secrets/wp_user_password)
 fi
 
+echo " dbname=$DB_NAME dbuser=$DB_USER -"
+
 until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PWD" -e "USE $DB_NAME" &>/dev/null; do
     echo "Waiting for MariaDB server to be ready..."
-    sleep 5
+    sleep 10
 done
 
 echo "MariaDB server is up - executing WordPress setup..."
-
 
 wp core download --allow-root --path=/var/www/html/web
 
