@@ -1,4 +1,5 @@
 ./srcs/database/*
 ./srcs/web/*
-./secrets/*
 ./srcs/.env
+./secrets/*
+!/secrets/.gitignore
