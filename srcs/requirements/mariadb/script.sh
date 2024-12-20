@@ -19,6 +19,8 @@ echo "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';" >> /var/lib/mysql/init.sql
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PWD';" >> /var/lib/mysql/init.sql
 echo "FLUSH PRIVILEGES;" >> /var/lib/mysql/init.sql
 
+echo "DB --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST"
+
 
 mysqld_safe --datadir=/var/lib/mysql  &
 sleep 5

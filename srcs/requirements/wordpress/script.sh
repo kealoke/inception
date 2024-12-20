@@ -1,6 +1,8 @@
 #!/bin/bash
-
-mkdir -p /var/www/html/web 
+sleep 10
+mkdir -p /var/www/
+mkdir -p /var/www/html/
+mkdir -p /var/www/html/web
 chown -R www-data:www-data /var/www/html/web
 find /var/www/html/web -type d -exec chmod 755 {} \;
 find /var/www/html/web -type f -exec chmod 644 {} \;
@@ -32,6 +34,9 @@ until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PWD" -e "USE $DB_NAME" &>/dev/nul
     echo "Waiting for MariaDB server to be ready..."
     sleep 10
 done
+
+echo "2--dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST"
+
 
 echo "MariaDB server is up - executing WordPress setup..."
 
