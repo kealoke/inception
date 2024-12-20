@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep 10
 mkdir -p /var/www/
 mkdir -p /var/www/html/
 mkdir -p /var/www/html/web
@@ -27,10 +27,15 @@ if [ -f /run/secrets/wp_user_password ]; then
     export WP_USER_PWD=$(cat /run/secrets/wp_user_password)
 fi
 
-until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PWD" -e "USE $DB_NAME" &>/dev/null; do
+echo "WP --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST"
+
+until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PWD" -e "SHOW DATABASE" &>/dev/null; do
     echo "Waiting for MariaDB server to be ready..."
     sleep 5
 done
+
+echo "2--dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST"
+
 
 echo "MariaDB server is up - executing WordPress setup..."
 
