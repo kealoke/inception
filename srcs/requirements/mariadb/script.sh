@@ -23,7 +23,7 @@ echo "DB --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PWD  --dbhost=$DB_HOST
 
 
 mysqld_safe --datadir=/var/lib/mysql  &
-sleep 10
+sleep 5
 
 mysql -uroot -p$DB_ROOT_PWD < /var/lib/mysql/init.sql
 
