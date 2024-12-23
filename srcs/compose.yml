@@ -67,14 +67,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/yushimom/data
+      device: /home/yuna/data/web
       o: bind
   database: 
     name: db_volume
     driver: local
     driver_opts:
       type: none
-      device: /home/yushimom/data
+      device: /home/yuna/data/database
       o: bind
  
 
