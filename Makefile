@@ -1,4 +1,7 @@
 COMPOSE_FILE=./srcs/compose.yml
+SRC_DIR := srcs
+ENV_EXAMPLE := $(SRC_DIR)/.env_example
+ENV_FILE := $(SRC_DIR)/.env
 
 help:
 	@echo "Usage:"
@@ -24,9 +27,16 @@ help:
 	@echo "  ps      check processes "
 	@echo "  logs    check logs "
 	
-	
 
-up:
+copy:
+	@if [ -f $(ENV_FILE) ]; then \
+		echo "$(ENV_FILE) already exists. Skipping copy."; \
+	else \
+		cp $(ENV_EXAMPLE) $(ENV_FILE); \
+		echo "Copied $(ENV_EXAMPLE) to $(ENV_FILE)."; \
+	fi
+
+up: copy
 	docker-compose -f $(COMPOSE_FILE) build
 	docker-compose -f $(COMPOSE_FILE) up -d
 
